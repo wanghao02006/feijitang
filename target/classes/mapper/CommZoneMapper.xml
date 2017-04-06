@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.leiyu.feijitang.mapper.CommZoneMapper" >
+  <resultMap id="BaseResultMap" type="com.leiyu.feijitang.model.CommZone" >
+    <constructor >
+      <idArg column="rid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="zonecode" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="zonename" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="parentcode" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="countryid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="zipcode" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="tollcall" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="createdate" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="alias" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="modifyuser" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="modifydate" jdbcType="DATE" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    rid, zonecode, zonename, parentcode, countryid, zipcode, tollcall, createdate, alias, 
+    modifyuser, modifydate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from comm_zone
+    where rid = #{rid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from comm_zone
+    where rid = #{rid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.leiyu.feijitang.model.CommZone" >
+    insert into comm_zone (rid, zonecode, zonename, 
+      parentcode, countryid, zipcode, 
+      tollcall, createdate, alias, 
+      modifyuser, modifydate)
+    values (#{rid,jdbcType=INTEGER}, #{zonecode,jdbcType=VARCHAR}, #{zonename,jdbcType=VARCHAR}, 
+      #{parentcode,jdbcType=VARCHAR}, #{countryid,jdbcType=INTEGER}, #{zipcode,jdbcType=VARCHAR}, 
+      #{tollcall,jdbcType=VARCHAR}, #{createdate,jdbcType=DATE}, #{alias,jdbcType=VARCHAR}, 
+      #{modifyuser,jdbcType=VARCHAR}, #{modifydate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.leiyu.feijitang.model.CommZone" >
+    insert into comm_zone
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rid != null" >
+        rid,
+      </if>
+      <if test="zonecode != null" >
+        zonecode,
+      </if>
+      <if test="zonename != null" >
+        zonename,
+      </if>
+      <if test="parentcode != null" >
+        parentcode,
+      </if>
+      <if test="countryid != null" >
+        countryid,
+      </if>
+      <if test="zipcode != null" >
+        zipcode,
+      </if>
+      <if test="tollcall != null" >
+        tollcall,
+      </if>
+      <if test="createdate != null" >
+        createdate,
+      </if>
+      <if test="alias != null" >
+        alias,
+      </if>
+      <if test="modifyuser != null" >
+        modifyuser,
+      </if>
+      <if test="modifydate != null" >
+        modifydate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rid != null" >
+        #{rid,jdbcType=INTEGER},
+      </if>
+      <if test="zonecode != null" >
+        #{zonecode,jdbcType=VARCHAR},
+      </if>
+      <if test="zonename != null" >
+        #{zonename,jdbcType=VARCHAR},
+      </if>
+      <if test="parentcode != null" >
+        #{parentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="countryid != null" >
+        #{countryid,jdbcType=INTEGER},
+      </if>
+      <if test="zipcode != null" >
+        #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="tollcall != null" >
+        #{tollcall,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=DATE},
+      </if>
+      <if test="alias != null" >
+        #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyuser != null" >
+        #{modifyuser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null" >
+        #{modifydate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.leiyu.feijitang.model.CommZone" >
+    update comm_zone
+    <set >
+      <if test="zonecode != null" >
+        zonecode = #{zonecode,jdbcType=VARCHAR},
+      </if>
+      <if test="zonename != null" >
+        zonename = #{zonename,jdbcType=VARCHAR},
+      </if>
+      <if test="parentcode != null" >
+        parentcode = #{parentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="countryid != null" >
+        countryid = #{countryid,jdbcType=INTEGER},
+      </if>
+      <if test="zipcode != null" >
+        zipcode = #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="tollcall != null" >
+        tollcall = #{tollcall,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        createdate = #{createdate,jdbcType=DATE},
+      </if>
+      <if test="alias != null" >
+        alias = #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyuser != null" >
+        modifyuser = #{modifyuser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null" >
+        modifydate = #{modifydate,jdbcType=DATE},
+      </if>
+    </set>
+    where rid = #{rid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.leiyu.feijitang.model.CommZone" >
+    update comm_zone
+    set zonecode = #{zonecode,jdbcType=VARCHAR},
+      zonename = #{zonename,jdbcType=VARCHAR},
+      parentcode = #{parentcode,jdbcType=VARCHAR},
+      countryid = #{countryid,jdbcType=INTEGER},
+      zipcode = #{zipcode,jdbcType=VARCHAR},
+      tollcall = #{tollcall,jdbcType=VARCHAR},
+      createdate = #{createdate,jdbcType=DATE},
+      alias = #{alias,jdbcType=VARCHAR},
+      modifyuser = #{modifyuser,jdbcType=VARCHAR},
+      modifydate = #{modifydate,jdbcType=DATE}
+    where rid = #{rid,jdbcType=INTEGER}
+  </update>
+</mapper>
