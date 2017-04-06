@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-COMPATIBLE" CONTENT="IE=edge"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <style href="bootstrap/css/bootstrap.min.css"></style>
+	<style>
+		.class1{
+		  background: #444;
+		  color: #eee;
+		}
+	</style>
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        {{message}}
+    </div>
+	<hr/>
+	<div id="app2">
+		<span v-bind:title="message">
+			鼠标悬停几秒查看此处动态绑定信息
+		</span>
+	</div>
+	<hr/>
+	<div id="app3">
+		<label for="r1">修改颜色</label>
+		<input type="checkbox" v-model="class1" id="r1"/>
+		<br/><br/>
+		<div v-bind:class="{'class1':class1}">
+			directiva v-bind:class
+		</div>
+	</div>
+	<hr/>
+	<div id="app4">
+		{{5+5}}<br>
+		{{ok ? "YES" : "NO"}}<br>
+		{{message.split("").reverse().join("")}}
+		<div v-bind:id="'list-' + id">菜鸟教程</div>
+	</div>
+	<hr/>
+	<div id="app5">
+		<p v-if="seen">现在你看到我了</p>
+	</div>
+	<hr/>
+	<div id="app6">
+		<p>{{message}}</p>
+		<input type="text" v-model="message"/>
+	</div>
+	<hr/>
+	<div id="app7">
+		<p>{{message}}</p>
+		<button v-on:click="reverseMessage">反转字符串</button>
+	</div>
+	</hr>
+	<div id="app8">
+		{{message | capitalize}}
+	</div>
+	<hr/>
+	<div id="app9">
+		<div v-if="Math.random() > 0.5">
+			Sorry
+		</div>
+		<div v-else>
+			Not Sorry
+		</div>
+	</div>
+	<hr/>
+	<div id="app10">
+		<div v-if="type === 'A'">
+		  A
+		</div>
+		<div v-else-if="type === 'B'">
+		  B
+		</div>
+		<div v-else-if="type === 'C'">
+		  C
+		</div>
+		<div v-else>
+		  Not A/B/C
+		</div>
+	</div>
+	<hr/>
+	<div id="app11">
+		<ol>
+			<li v-for="site in sites">
+				{{site.name}}
+			</li>
+		</ol>
+	</div>
+	<hr/>
+	<div id="app12">
+		<ul>
+			<li v-for="(key,value,index) in object">
+				{{index}}--{{key}}:{{value}}
+			</li>
+		</ul>
+	</div>
+	
+	
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript">
+	
+		
+		var app12 = new Vue({
+			el:"#app12",
+			data:{
+				object:{
+					name:"RUNOOB",
+					url:"http://www.runoob.com",
+					slogan:'学的不仅是技术，更是梦想'
+				}
+			}
+		});
+		
+		var app11 = new Vue({
+			el:"#app11",
+			data:{
+				sites:[
+					{name:"RUNOOB"},
+					{name:"Google"},
+					{name:"Taobao"}
+				]
+			}
+		});
+		
+		var app10 = new Vue({
+			el:"#app10",
+			data:{
+				type:'C'
+			}
+		});
+		
+		var app9 = new Vue({
+			el:"#app9"
+		});
+		
+		var app8 = new Vue({
+			el:"#app8",
+			data:{
+				message:"runoob"
+			},
+			filters:{
+				capitalize:function(value){
+					if(!value) return '';
+					value = value.toString();
+					return value.charAt(0).toUpperCase() + value.slice(1);
+				}
+			}
+		});
+		
+		var app7 = new Vue({
+			el:"#app7",
+			data:{
+				message:"RUNOOB"
+			},
+			methods:{
+				reverseMessage:function(){
+					this.message = this.message.split("").reverse().join("");
+				}
+			}
+		});
+		
+		var app6 = new Vue({
+			el:"#app6",
+			data:{
+				message:"RUNOOB"
+			}
+		});
+	
+		var app5 = new Vue({
+			el:"#app5",
+			data:{
+				seen:true
+			}
+		});
+	
+        var app = new Vue({
+            el:"#app",
+            data:{
+                message:"Hello Vue"
+            }
+        });
+		
+		var app2 = new Vue({
+			el:"#app2",
+			data:{
+				message:"页面加载于" + new Date()
+			}
+		});
+		
+		var app3 = new Vue({
+			el:"#app3",
+			data:{
+				class1:false
+			}
+		});
+		
+		var app4 = new Vue({
+			el:"#app4",
+			data:{
+				ok:true,
+				message:"RUNOOB",
+				id:1
+			}
+		});
+    </script>
+</body>
+</html>
